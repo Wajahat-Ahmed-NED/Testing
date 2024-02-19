@@ -1,0 +1,80 @@
+[
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1739383652.40483,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "li_at",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "AQEDAS8hD2gCYX6SAAABi2x2IqoAAAGNx7OUOVYAnkMTwiTNLbKpvgl3JAt9Ca9U8il5bEl4MG63ew-nhx9UrRrWLSC2t1_UcuexeXMILRUJRiwXlq3HgXzSUBW7SZS0BbzyVhICwg_XD8acdWDH4eO6"
+    },
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1739817513.366584,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "bscookie",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "\"v=1&20231016191204b2d43ed0-9ac6-4a69-8657-3eaa2ba5411fAQE4LexvegO908w0auyXlX_aXg8EO8vU\""
+    },
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1739383652.404888,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "JSESSIONID",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "\"ajax:1548481360246190608\""
+    },
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1723833768,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "li_theme",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "light"
+    },
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1723833768,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "li_theme_set",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "app"
+    },
+    {
+        "domain": ".www.linkedin.com",
+        "expirationDate": 1709491367,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "timezone",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "Asia/Karachi"
+    }
+]
