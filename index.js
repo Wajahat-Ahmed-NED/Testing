@@ -69,7 +69,7 @@ async function main() {
   for (const [index, link] of employeesLinks.entries()) {
     console.log(`Processing ${index + 1} / ${employeesLinks.length}`);
 
-    await page.goto(link);
+    await page.goto(link, { waitUntil: 'load', timeout: 0 });
     await page.waitForNetworkIdle();
 
     const currentCompany = await page.evaluate(() => {
