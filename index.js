@@ -1,5 +1,9 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
+const xl = require("excel4node");
+
+const wb = new xl.Workbook();
+const ws = wb.addWorksheet("Employees");
 
 main();
 
@@ -71,6 +75,8 @@ async function main() {
 
     await page.goto(link, { waitUntil: "load", timeout: 0 });
 
+    await sleep(4000);
+
     const currentCompany = await page.evaluate(() => {
       const el = document.querySelector(
         ".pv-text-details__right-panel li:first-child button span"
@@ -132,18 +138,36 @@ async function main() {
     });
   }
 
-  const f = fs.createWriteStream("./data.csv");
-  f.write(
-    `Name, Current, Company, Location, Role, Linkedin Url, About, Time in Company, Length in Position,\n`
-  );
-  data.forEach((obj) => {
-    f.write(
-      `${obj.name}, ${obj.currentCompany}, ${obj.location}, ${obj.role}, ${obj.linkedinUrl}, ${obj.about}, ${obj.timeInCompany}, ${obj.lengthInPosition},\n`
-    );
-  });
-  f.close();
+  const headings = [
+    "name",
+    "currentCompany",
+    "location",
+    "role",
+    "location",
+    "about",
+    "timeInCompany",
+    "lengthInPosition",
+  ];
 
-  fs.writeFileSync("./data.json", JSON.stringify({ data }));
+  let headColIndex = 1;
+  headings.sort().forEach((heading) => {
+    ws.cell(1, headColIndex++).string(heading);
+  });
+
+  let rowIndex = 2;
+  data.forEach((record) => {
+    let colIndex = 1;
+    Object.keys(record)
+      .sort()
+      .forEach((colName) => {
+        ws.cell(rowIndex, colIndex++).string(record[colName]);
+      });
+    rowIndex++;
+  });
+
+  wb.write("data.xlsx");
+
+  //fs.writeFileSync("./data.json", JSON.stringify({ data }));
 
   await browser.close();
 
@@ -181,5 +205,12 @@ async function scrollToBottom(page) {
 }
 
 function removeCommas(str) {
-  return str.replaceAll(",", "");
+  let output = str.replaceAll("\n", " ");
+  return output.replaceAll(",", "");
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }

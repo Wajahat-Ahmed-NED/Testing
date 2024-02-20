@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "excel4node": "^1.8.2",
     "puppeteer": "^22.1.0"
   }
 }
