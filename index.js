@@ -69,8 +69,7 @@ async function main() {
   for (const [index, link] of employeesLinks.entries()) {
     console.log(`Processing ${index + 1} / ${employeesLinks.length}`);
 
-    await page.goto(link, { waitUntil: 'load', timeout: 0 });
-    await page.waitForNetworkIdle();
+    await page.goto(link, { waitUntil: "load", timeout: 0 });
 
     const currentCompany = await page.evaluate(() => {
       const el = document.querySelector(
@@ -122,29 +121,29 @@ async function main() {
     });
 
     data.push({
-      name: employeeName,
-      currentCompany,
-      location,
-      role,
-      linkedinUrl,
-      about,
-      timeInCompany,
-      lengthInPosition,
+      name: removeCommas(employeeName),
+      currentCompany: removeCommas(currentCompany),
+      location: removeCommas(location),
+      role: removeCommas(role),
+      linkedinUrl: removeCommas(linkedinUrl),
+      about: removeCommas(about),
+      timeInCompany: removeCommas(timeInCompany),
+      lengthInPosition: removeCommas(lengthInPosition),
     });
   }
 
   const f = fs.createWriteStream("./data.csv");
   f.write(
-    `Name, Current Company, Location, Role,  Linkedin Url, About, Time in Company, Length in Position \n`
+    `Name, Current, Company, Location, Role, Linkedin Url, About, Time in Company, Length in Position,\n`
   );
   data.forEach((obj) => {
     f.write(
-      `${obj.name}, ${obj.currentCompany}, ${obj.location}, ${obj.role}, ${obj.linkedinUrl}, ${obj.about}, ${obj.timeInCompany}, ${obj.lengthInPosition} \n`
+      `${obj.name}, ${obj.currentCompany}, ${obj.location}, ${obj.role}, ${obj.linkedinUrl}, ${obj.about}, ${obj.timeInCompany}, ${obj.lengthInPosition},\n`
     );
   });
   f.close();
 
-  //fs.writeFileSync("./test.json", JSON.stringify({ data }));
+  fs.writeFileSync("./data.json", JSON.stringify({ data }));
 
   await browser.close();
 
@@ -179,4 +178,8 @@ async function scrollToBottom(page) {
       documentHeight = document.body.scrollHeight;
     }
   });
+}
+
+function removeCommas(str) {
+  return str.replaceAll(",", "");
 }
